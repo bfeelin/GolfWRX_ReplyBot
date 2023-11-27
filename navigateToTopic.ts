@@ -2,6 +2,7 @@ import { Page } from 'puppeteer';
 import config from './config';
 import { state } from './index'
 import getRandomReply from './utils/getRandomReply';
+import wait from './utils/wait';
 
 interface Params {
   page: Page;
@@ -22,12 +23,13 @@ async function getTopicList({ page }: Params): Promise<Array<string>> {
 
 async function writeReply({ page }: Params): Promise<void> {
     console.log('Writing reply...')
-    // await page.waitForSelector('div[data-role="editorComposer"]');
-    // await page.click('div[data-role="editorComposer"]');
-    // await page.waitForSelector('.cke_wysiwyg_div');
-    // await page.type('.cke_wysiwyg_div', getRandomReply());
-    // await page.waitForSelector('button.ipsButton_primary');
-    // await page.click('button.ipsButton_primary');
+    await page.waitForSelector('div[data-role="editorComposer"]');
+    await page.click('div[data-role="editorComposer"]');
+    await wait(2000)
+    await page.waitForSelector('.cke_wysiwyg_div');
+    await page.type('.cke_wysiwyg_div', getRandomReply());
+    await page.waitForSelector('button.ipsButton_primary');
+    await page.click('button.ipsButton_primary');
     state.incrementPostCount()
     return
 }
