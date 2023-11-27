@@ -22,12 +22,14 @@ async function getTopicList({ page }: Params): Promise<Array<string>> {
 
 async function writeReply({ page }: Params): Promise<void> {
     console.log('Writing reply...')
-    await page.waitForSelector('div[data-role="editorComposer"]');
-    await page.click('div[data-role="editorComposer"]');
-    await page.waitForSelector('.cke_wysiwyg_div');
-    await page.type('.cke_wysiwyg_div', getRandomReply());
-    await page.waitForSelector('button.ipsButton_primary');
-    await page.click('button.ipsButton_primary');
+    // await page.waitForSelector('div[data-role="editorComposer"]');
+    // await page.click('div[data-role="editorComposer"]');
+    // await page.waitForSelector('.cke_wysiwyg_div');
+    // await page.type('.cke_wysiwyg_div', getRandomReply());
+    // await page.waitForSelector('button.ipsButton_primary');
+    // await page.click('button.ipsButton_primary');
+    state.incrementPostCount()
+    return
 }
 
 async function navigateToTopic({ page }: Params): Promise<void> {
@@ -42,21 +44,26 @@ async function navigateToTopic({ page }: Params): Promise<void> {
 
     // Check if the page contains the username
     const username = config.USERNAME;
-    const userHasPosted = await page.evaluate(() => {
-        const posts = Array.from(document.querySelectorAll('.post'));
-        for (const post of posts) {
-            const author = post.querySelector('.ipsUserPhoto')?.getAttribute('data-ipsusername');
-            if (author === username) {
+      // Check if the user has already posted a reply
+    const userHasPosted = await page.evaluate((username) => {
+        console.log('Checking if user has posted on this topic already...')
+        const replies = Array.from(document.querySelectorAll('.cPost'));
+        console.log(replies)
+        for (const reply of replies) {
+            const authorElement = reply.querySelector('.ipsType_break') as HTMLElement;
+            if (authorElement && authorElement.innerText?.trim() === username) {
                 return true;
             }
         }
         return false;
-    });
+    }, username);
+
     if (userHasPosted) {
         console.log('User has posted on this topic already. Skipping topic...');
     } else {
         writeReply({ page });
     }
+    return
 }
 
 
