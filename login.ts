@@ -8,9 +8,8 @@ interface Params {
 }
 
 async function login({ page, username, password }: Params): Promise<void> {
-  // Navigate to LinkedIn
-  await page.goto(config.LOGIN_URL, { waitUntil: 'load' });
-
+    await page.goto(config.LOGIN_URL, { waitUntil: 'load' });
+    console.log("Logging into user: " + username)
     // Enter login credentials and submit the form
     await page.type('input[name="auth"]', username);
     await page.type('input[name="password"]', password);
@@ -18,12 +17,10 @@ async function login({ page, username, password }: Params): Promise<void> {
     await page.click('button[name="_processLogin"]');
 
     // Wait for the login to complete
-    await page.waitForNavigation({ waitUntil: 'load' });
+    // await page.waitForNavigation({ waitUntil: 'load' });
 
     console.log('Logged in to GolfWrx');
-  
-
-
+    return
 }
 
 export default login;
