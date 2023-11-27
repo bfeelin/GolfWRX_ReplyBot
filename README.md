@@ -1,4 +1,4 @@
-# Project Title
+# GolfWRX Reply Bot
 
 This project is a script that automates the process of logging in and posting replies on GolfWRX Forum using Puppeteer.
 
