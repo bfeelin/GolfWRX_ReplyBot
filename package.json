@@ -1,0 +1,17 @@
+{
+  "name": "golfwrx_replybot",
+  "version": "1.0.0",
+  "description": "A bot that will automatically reply to posts on the GolfWRX Forum",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node ./index.ts"
+  },
+  "author": "Brian Phelan",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "puppeteer": "^21.5.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}
