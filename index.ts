@@ -53,19 +53,19 @@ export const state = createAppState();
 
     await login({
         page: listingPage,
-        username: config.USERNAME || "",
-        password: config.PASSWORD || ""
+        username: config.USERNAME,
+        password: config.PASSWORD
     });
 
-    //await listingPage.goto(config.SUBFORUM_URL, { waitUntil: 'load' });
 
-  //while(state.getState().post_count < config.MAX_POSTS){
+    while(state.getState().post_count < config.MAX_POSTS){
+        await listingPage.goto(config.SUBFORUM_URL, { waitUntil: 'load' });
+        console.log(`Current post count: ${state.getState().post_count}, max post count: ${config.MAX_POSTS}`)
+        await navigateToTopic({
+            page: listingPage
+        })
 
-    // await navigateToTopic({
-    //     page: listingPage
-    // })
-  //}
-
-
+    }
+    console.log(`FINISHED. Current post count: ${state.getState().post_count}, max post count: ${config.MAX_POSTS}`)
   // await browser.close();
 })();
