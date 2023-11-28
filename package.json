@@ -9,7 +9,10 @@
   "author": "Brian Phelan",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.2",
     "dotenv": "^16.3.1",
+    "gpt4all": "^2.2.0",
+    "openai": "^4.20.1",
     "puppeteer": "^21.5.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"
