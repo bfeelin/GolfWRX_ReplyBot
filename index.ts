@@ -1,8 +1,12 @@
+import checkIfAlreadyPosted from "./checkIfAlreadyPosted";
 import config from "./config";
 import login from "./login";
 import navigateToTopic from "./navigateToTopic";
 import wait from "./utils/wait";
 import puppeteer from "puppeteer";
+import getThread from './getThread'
+import buildPrompt from "./utils/buildPrompt";
+import getOpenAIReply from "./utils/getOpenAIReply";
 
 interface AppState {
   paused: boolean;
@@ -60,15 +64,35 @@ export const state = createAppState();
 
   while (state.getState().post_count < config.MAX_POSTS) {
     await listingPage.goto(config.SUBFORUM_URL, { waitUntil: "load" });
-    console.log(
-      `Current post count: ${state.getState().post_count}, max post count: ${config.MAX_POSTS}`
-    );
+    console.log(`Current post count: ${state.getState().post_count}, max post count: ${config.MAX_POSTS}`);
     await navigateToTopic({
       page: listingPage,
     });
-    let timeToWait = Math.floor(Math.random() * (config.MS_BETWEEN_REPLIES_UPPER - config.MS_BETWEEN_REPLIES_LOWER + 1)) + config.MS_BETWEEN_REPLIES_LOWER;
-    console.log('Waiting ' + timeToWait + 'ms to write next reply...')
-    await wait(timeToWait);
+    let userHasPosted = await checkIfAlreadyPosted({
+      page: listingPage
+    })
+    if(userHasPosted){
+      console.log(`User has posted on this topic already, skipping...`)
+    }
+    else{
+      let thread = await getThread({
+        page: listingPage
+      })
+      let prompt = buildPrompt({
+        thread: thread
+      })
+      console.log('Prompt: ')
+      console.log(prompt)
+      let reply = await getOpenAIReply({
+        prompt: prompt
+      })
+      console.log('Generated Reply: ')
+      console.log(reply)
+      let timeToWait = Math.floor(Math.random() * (config.MS_BETWEEN_REPLIES_UPPER - config.MS_BETWEEN_REPLIES_LOWER + 1)) + config.MS_BETWEEN_REPLIES_LOWER;
+      console.log('Waiting ' + timeToWait + 'ms to write next reply...')
+      await wait(timeToWait);
+    }
+  
   }
   console.log(
     `FINISHED. Current post count: ${state.getState().post_count}, max post count: ${config.MAX_POSTS}`
