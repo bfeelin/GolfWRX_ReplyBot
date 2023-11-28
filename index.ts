@@ -66,8 +66,9 @@ export const state = createAppState();
     await navigateToTopic({
       page: listingPage,
     });
-    console.log('Waiting ' + config.MS_BETWEEN_REPLIES + 'ms to write next reply...')
-    await wait(config.MS_BETWEEN_REPLIES);
+    let timeToWait = Math.floor(Math.random() * (config.MS_BETWEEN_REPLIES_UPPER - config.MS_BETWEEN_REPLIES_LOWER + 1)) + config.MS_BETWEEN_REPLIES_LOWER;
+    console.log('Waiting ' + timeToWait + 'ms to write next reply...')
+    await wait(timeToWait);
   }
   console.log(
     `FINISHED. Current post count: ${state.getState().post_count}, max post count: ${config.MAX_POSTS}`

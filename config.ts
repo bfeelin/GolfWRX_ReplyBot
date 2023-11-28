@@ -5,7 +5,8 @@ export default {
     MAX_POSTS: 8,
     LOGIN_URL: "https://forums.golfwrx.com/login/",
     SUBFORUM_URL: "https://forums.golfwrx.com/forum/56-classifieds-for-sale-forum/page/2",
-    MS_BETWEEN_REPLIES: 120000, // 120000ms = 2 minutes
+    MS_BETWEEN_REPLIES_LOWER: 120000, // 120000ms = 2 minutes
+    MS_BETWEEN_REPLIES_UPPER: 340000,
     REPLIES: [
         "Interested! If only my wife would let me buy another set...",
         "Nice clubs! If I were good enough, I'd snatch them up. GLWS!",
