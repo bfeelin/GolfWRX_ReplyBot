@@ -1,10 +1,12 @@
-import checkIfAlreadyPosted from "./checkIfAlreadyPosted";
+import { configDotenv } from "dotenv";
+configDotenv()
+import checkIfAlreadyPosted from "./src/checkIfAlreadyPosted";
 import config from "./config";
-import login from "./login";
-import navigateToTopic from "./navigateToTopic";
+import login from "./src/login";
+import navigateToTopic from "./src/navigateToTopic";
 import wait from "./utils/wait";
 import puppeteer from "puppeteer";
-import getThread from './getThread'
+import getThread from './src/getThread'
 import buildPrompt from "./utils/buildPrompt";
 import getOpenAIReply from "./utils/getAIReply";
 
@@ -58,8 +60,8 @@ export const state = createAppState();
 
   await login({
     page: listingPage,
-    username: config.USERNAME,
-    password: config.PASSWORD,
+    username: config.USERNAME || '',
+    password: config.PASSWORD || '',
   });
 
   while (state.getState().post_count < config.MAX_POSTS) {

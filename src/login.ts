@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer';
-import config from "./config";
+import config from "../config";
 
 interface Params {
   page: Page;

@@ -1,6 +1,6 @@
 import { Page } from 'puppeteer';
-import { state } from './index'
-import wait from './utils/wait';
+import { state } from '../index'
+import wait from '../utils/wait';
 
 interface Params {
   page: Page;

@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer';
-import wait from './utils/wait';
+import wait from '../utils/wait';
 
 interface Params {
   page: Page;
