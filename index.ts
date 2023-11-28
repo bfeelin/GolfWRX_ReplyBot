@@ -6,7 +6,7 @@ import wait from "./utils/wait";
 import puppeteer from "puppeteer";
 import getThread from './getThread'
 import buildPrompt from "./utils/buildPrompt";
-import getOpenAIReply from "./utils/getOpenAIReply";
+import getOpenAIReply from "./utils/getAIReply";
 
 interface AppState {
   paused: boolean;
