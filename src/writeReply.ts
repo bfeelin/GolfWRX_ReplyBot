@@ -4,7 +4,7 @@ import wait from '../utils/wait';
 
 interface Params {
   page: Page;
-  reply: String
+  reply: string
 }
 
 async function writeReply({ page, reply }: Params): Promise<void> {
