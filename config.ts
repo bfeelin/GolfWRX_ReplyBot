@@ -4,11 +4,11 @@ export default {
     USERNAME: process.env.USERNAME,
     PASSWORD: process.env.PASSWORD,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-    MAX_POSTS: 1,
+    MAX_POSTS: 5,
     LOGIN_URL: "https://forums.golfwrx.com/login/",
-    SUBFORUM_URL: "https://forums.golfwrx.com/forum/216-classic-golf-and-golfers/page/2/",
+    SUBFORUM_URL: "https://forums.golfwrx.com/forum/226-general-golf-talk/page/6/",
     MS_BETWEEN_REPLIES_LOWER: 120000, // 120000ms = 2 minutes
-    MS_BETWEEN_REPLIES_UPPER: 340000,
+    MS_BETWEEN_REPLIES_UPPER: 540000,
     VOICE_EXAMPLES: [
         "I had something come loose in a t200 head which I had bought used. I took it to the PGA superstore and Titleist ended up replacing it",
         "If you've got money to burn, you could try a mini driver at 13.5 degrees. I've always been bad with fairway woods and found that the mini was better for me than my 3 wood. Although lately I've been using a utility iron in that spot",
