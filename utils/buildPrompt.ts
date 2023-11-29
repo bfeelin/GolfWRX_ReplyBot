@@ -1,5 +1,5 @@
 export default function buildPrompt({ thread }: { thread: string[] }): string {
-    return `Craft a forum response to the following thread in a maximum of 200 characters: ${thread[0]}`
+    return `Craft a forum response to the following thread in 50-100 characters. Keep in mind this is a Golf Forum: ${thread[0]}`
 }
 
 // ${thread?.map((reply, i) => `${i+1} :${reply}`)}`
