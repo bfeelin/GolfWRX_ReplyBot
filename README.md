@@ -12,9 +12,21 @@ You need to have Node.js and npm installed on your local machine. This project w
 - git clone
 2. Install the dependencies
 - npm install
-3. Add your credentials in config.ts
-4. Execute the program
+3. (Recommended) Install [GPT4All](https://gpt4all.io/index.html)
+- Download a LLM and enable the local rest API
+3. (Alternative) Use prewritten replies in config.ts
+- You will need to change the code to use getRandomReply instead of getAIReply
+4. Add your credentials in .env
+5. Execute the program
 - npm run start
+
+## Content Of Replies
+
+This repo was used in conjuction with the [GPT4All](https://gpt4all.io/index.html) client and it's local rest API to generate replies.
+
+To use GPT4All, you will need to install it, download a LLM and enable the local rest API via the settings. There is also an array
+of replies in config.ts that could be used by calling the getRandomReply function.
+
 
 ## Usage
 
@@ -30,7 +42,7 @@ USERNAME
 MAX_POSTS
 - The script will continue to post replies until it reaches a maximum post count. The forum is moderated, if you use this tool to write more than 10 replies per day, you may be banned
 
-MS_BETWEEN_REPLIES
+MS_BETWEEN_REPLIES_LOWER && MS_BETWEEN_REPLIES_UPPER
 - Delay between navigating between topics. This is also to avoid the banhammer
 
 ## Built With
