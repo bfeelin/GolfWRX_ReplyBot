@@ -1,5 +1,4 @@
 USERNAME=""
 PASSWORD=""
-OPENAI_API_KEY=""
 
 // Change this filename to .env and add your credentials
