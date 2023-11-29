@@ -9,6 +9,7 @@ import puppeteer from "puppeteer";
 import getThread from './src/getThread'
 import buildPrompt from "./utils/buildPrompt";
 import getOpenAIReply from "./utils/getAIReply";
+import writeReply from "./src/writeReply";
 
 interface AppState {
   paused: boolean;
@@ -90,6 +91,10 @@ export const state = createAppState();
       })
       console.log('Generated Reply: ')
       console.log(reply)
+      await writeReply({
+        page: listingPage,
+        reply: reply
+      })
       let timeToWait = Math.floor(Math.random() * (config.MS_BETWEEN_REPLIES_UPPER - config.MS_BETWEEN_REPLIES_LOWER + 1)) + config.MS_BETWEEN_REPLIES_LOWER;
       console.log('Waiting ' + timeToWait + 'ms to write next reply...')
       await wait(timeToWait);
