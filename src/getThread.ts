@@ -7,8 +7,9 @@ interface Params {
 
 async function getThread({ page }: Params): Promise<Array<string>> {
   // Wait for the necessary content to load (you may need to adjust the waiting time)
+  await wait(5000)
   await page.waitForSelector('div[data-role="commentContent"]');
-  await wait(2000)
+  await wait(5000)
 
   // Extract the thread responses
   const responses = await page.evaluate(() => {
